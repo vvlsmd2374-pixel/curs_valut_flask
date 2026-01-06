@@ -249,4 +249,8 @@ def status():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5954)
+    # Для работы в Docker/Render используйте 0.0.0.0
+    import os
+    host = os.environ.get('FLASK_HOST', '0.0.0.0')
+    port = int(os.environ.get('PORT', 5954))
+    app.run(debug=False, host=host, port=port)
